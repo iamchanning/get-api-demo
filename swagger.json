@@ -1,0 +1,93 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "NSW registrations",
+    "description": "Registrations API version 1",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/v1",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/registrations": {
+      "get": {
+        "tags": ["Registrations"],
+        "summary": "Get all registrations",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Registrations"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Registrations": {
+      "required": ["plate_number", "registration", "vehicle", "insurer"],
+      "properties": {
+        "plate_number": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "registration": {
+          "type": "object",
+          "properties": {
+            "expired": {
+              "type": "boolean"
+            },
+            "expiry_date": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+      "vehicle": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "boolean"
+          },
+          "make": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "colour": {
+            "type": "string"
+          },
+          "vin": {
+            "type": "string"
+          },
+          "tare_weight": {
+            "type": "string"
+          },
+          "gross_mass": {
+            "type": "integer"
+          }
+        }
+      },
+      "insurer": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "boolean"
+            },
+            "code": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}
